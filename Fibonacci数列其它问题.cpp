@@ -59,6 +59,5 @@ int main()
     int n;
     cin >> n;
     cout << F[n];
-    printf("你好");
     return 0;
 }

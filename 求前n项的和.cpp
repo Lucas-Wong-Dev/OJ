@@ -23,27 +23,27 @@
 */
 // 答案的大小不在你的语言默认的整型(int)范围内，如果使用整型变量来保存结果，会导致结果错误。
 // 如果你使用C++或C语言而且准备使用printf输出结果，则你的格式字符串应该写成%I64d以输出long long类型的整数。
-// #include <stdio.h>
-// int main()
-// {
-//     long long n, sum;
-//     scanf("%I64d", &n);
-//     sum = (n + 1) * n / 2;
-//     printf("%I64d", sum); // 方便起见，竞赛时用cout输出sum
-//     return 0;
-// }
-
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 int main()
 {
-    long long n;
-    cin >> n;
-    long long result;
-    result = (1 + n) * n / 2;
-    printf("%I64d", result);
+    long long n, sum;
+    scanf("%I64d", &n);
+    sum = (n + 1) * n / 2;
+    printf("%I64d", sum); // 方便起见，竞赛时用cout输出sum
     return 0;
 }
+
+// #include <iostream>
+// using namespace std;
+// int main()
+// {
+//     long long n;
+//     cin >> n;
+//     long long result;
+//     result = (1 + n) * n / 2;
+//     printf("%I64d", result);
+//     return 0;
+// }
 
 // 用 %u 打印 unsigned int 类型的变量
 // 用 %ld 打印 long 类型的变量
