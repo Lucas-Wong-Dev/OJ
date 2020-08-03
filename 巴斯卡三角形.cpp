@@ -13,12 +13,12 @@
 */
 #include <stdio.h>
 const int N = 12; // 输出12行
-long combi(int a, int b)
+long combi(int n, int m)
 {
     long ans = 1;
-    for (int i = 1; i <= b; i++){
-        printf("%d*(%d-%d+1)/%d=", ans, a, i, i);
-        ans = ans * (a - i + 1) / i;
+    for (int i = 1; i <= m; i++){
+        printf("%d*(%d-%d+1)/%d=", ans, n, i, i);
+        ans = ans * (n - i + 1) / i;
         printf("%d\n", ans);
     }
     printf("--->%d", ans);
