@@ -7,35 +7,35 @@
 
 输出：9
 */
-#include <stdio.h>
-int days(int year);
-int main()
-{
-    int cnt = 0; // 用来存储答案，从建国到现在，有cnt次国庆节正好是星期日
-    int w = 6; // 1949年的国庆节（10 月 1 日）是星期六，所以初始化为6
-    for (int year = 1950; year < 2013; year++)
-    {
-        w = (days(year) % 7 + w) % 7;
-        if (w == 0)
-        {
-            cnt++;
-        }
-    }
-    printf("%d", cnt);
-}
-int days(int year) // 这个函数用来计算特定年份的天数
-{
-    if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
-    {
-        printf("r %d %d\n", year, 366);
-        return 366; // 闰年有366天
-    }
-    else
-    {
-        printf("p %d %d\n", year, 365);
-        return 365;
-    }
-}
+// #include <stdio.h>
+// int days(int year);
+// int main()
+// {
+//     int cnt = 0; // 用来存储答案，从建国到现在，有cnt次国庆节正好是星期日
+//     int w = 6; // 1949年的国庆节（10 月 1 日）是星期六，所以初始化为6
+//     for (int year = 1950; year < 2013; year++)
+//     {
+//         w = (days(year) % 7 + w) % 7;
+//         if (w == 0)
+//         {
+//             cnt++;
+//         }
+//     }
+//     printf("%d", cnt);
+// }
+// int days(int year) // 这个函数用来计算特定年份的天数
+// {
+//     if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+//     {
+//         printf("r %d %d\n", year, 366);
+//         return 366; // 闰年有366天
+//     }
+//     else
+//     {
+//         printf("p %d %d\n", year, 365);
+//         return 365;
+//     }
+// }
 
 
 // ​公历中的年分为​闰年和平年

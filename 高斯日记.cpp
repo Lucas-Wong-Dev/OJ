@@ -62,3 +62,37 @@ int main()
     printf("%d-%d-%d\n", year, month, day+daysUnvisited); // 天数还要加上原先的 15 天
     return 0;
 }
+
+// #include <stdio.h>
+
+// const int days_in_month[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+// bool isLeapYear(int year) {
+//     return (year % 4 == 0 && year % 100 != 0) ||
+//            (year % 400 == 0);
+// }
+
+// int main(int argc, char const *argv[]) {
+//     int year = 1777;
+//     int month = 5;
+//     int day = 0; // 把4月30日视为5月0日
+//     int last = 8113 - 1;
+//     while (last > 0) {
+//         bool leap = isLeapYear(year);
+//         if (last > (leap ? 366 : 365)) {
+//             last -= (leap ? 366 : 365);
+//             year++;
+//         } else if (last > days_in_month[month]) {
+//             last -= (month == 2 && leap == false ? 28 : days_in_month[month]);
+//             month++;
+//             if (month > 12) {
+//                 month = 1;
+//             }
+//         } else {
+//             day = last;
+//             last = 0;
+//         }
+//     }
+//     printf("%d-%d-%d\n", year, month, day);
+//     return 0;
+// }
