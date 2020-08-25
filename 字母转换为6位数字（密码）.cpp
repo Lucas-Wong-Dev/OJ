@@ -28,7 +28,7 @@ void getstr()
     char ch;
     while ((ch = getchar()) != '\n')
     {
-        str[istr % 6] += ch; //把所有垂直在同一个位置的字符的 ascii 码值相加
+        str[istr % 6] += ch; //把所有垂直在同一个位置的字符的 ascii 码值相加★★★
         istr++;
     }
 }

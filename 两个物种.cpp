@@ -8,13 +8,14 @@ X 出生后每隔3分钟分裂一次（数目加倍），Y出生后每隔2分钟
 
 本题的要求就是写出这两种初始条件下，60分钟后Y的数目。
 
-X=10，Y=90时，输出：94371840   
+X=10,Y=89时，输出：0
+X=10,Y=90时，输出：94371840
 */
 
 #include <stdio.h>
 int main()
 {
-    long long numOfX = 10, numOfY = 89;
+    long long numOfX = 10, numOfY = 90;
 
     for (int i = 0; i < 120; i++) // i++意味着时间过去了半分钟
     {
