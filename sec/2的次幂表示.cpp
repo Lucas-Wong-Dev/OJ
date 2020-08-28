@@ -1,4 +1,4 @@
-// 2的次幂问题
+// 2的次幂表示
 /*
 问题描述
 任何一个正整数都可以用2进制表示，例如：137的2进制表示为10001001。
@@ -7,7 +7,10 @@
 进一步：
 7=2^2+2+2^0 (2^1 用 2 表示)
 3=2+2^0
-所以最后137可表示为：2(2(2)+2+2(0))+2(2+2(0))+2(0) 
+所以最后137可表示为：
+2(2(2)+2+2(0))+
+2(2+2(0))+
+2(0) 
 
 又如：1315=2^10+2^8+2^5+2+1
 所以1315最后可表示为 ： 
@@ -36,37 +39,40 @@
 用递归实现会比较简单，可以一边递归一边输出
 */
 
-#include <stdio.h>
-#include <math.h>
+#include <iostream>
+#include <cmath>
+using namespace std;
 void fun(int x)
 {
-    int y = (int)(log(x) / log(2));
-    int remainingPart = x - pow(2, y);
-    if (y == 0) // 如果y==0，则说明x为1（输入为正整数，remainingPart是两个整数之差，所以x只可能是整数），进而remainingPart为0,也就是说不再有剩余的部分需要用2的次幂来表示，所以输出“2(0)”后就可以退出fun函数了
+    int index = (int)(log(x) / log(2));
+    int remainingPart = x - pow(2, index);
+    if (index == 0) // 如果index==0，则说明x为1（输入为正整数，remainingPart是两个整数之差，所以x只可能是整数），进而remainingPart为0,也就是说不再有剩余的部分需要用2的次幂来表示，所以输出“2(0)”后就可以退出fun函数了
     {
-        printf("2(0)");
+        cout << "2(0)";
         return;
     }
-    else if (y == 1)
+    else if (index == 1)
     {
-        printf("2");
+        cout << "2";
+        // 注意：index==1时，不能像index==0时那样cout后return
+        // 例如：当x等于3时，log(3)/log(2)==1.58496，index==1，remainingPart==1（而非0），所以cout后不能直接return
     }
     else
     {
-        printf("2(");
-        fun(y);
-        printf(")");
+        cout << "2(";
+        fun(index);
+        cout << ")";
     }
     if (remainingPart)
     {
-        printf("+");
+        cout << "+";
         fun(remainingPart);
     }
 }
 int main()
 {
     int n;
-    scanf("%d", &n);
+    cin >> n;
     fun(n);
     return 0;
 }
