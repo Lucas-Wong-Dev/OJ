@@ -1,5 +1,5 @@
+// 区间k大数查询
 /*
-区间k大数查询
 问题描述
 给定一个序列，每次询问序列中第l个数到第r个数中第K大的数是哪个。
 
@@ -23,20 +23,21 @@
 2
 
 数据规模与约定
-对于30%的数据，n,m<=100； 对于100%的数据，n,m<=1000；
+对于30%的数据，n,m<=100；
+对于100%的数据，n,m<=1000；
 保证k<=(r-l+1)，序列中的数<=10^6。
 */
 
 #include <iostream>
 #include <algorithm>
-#include <vector>
+#include <vector> // 本代码中使用到了向量容器
 using namespace std;
 int cmp(int a, int b) { return a > b; }
 int main()
 {
     int n, m;
     cin >> n;
-    vector<int> a(n);
+    vector<int> a(n); // 指定向量a的初始大小为n个int元素
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
@@ -62,3 +63,46 @@ int main()
     }
     return 0;
 }
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int cmp(int a, int b)
+{
+    return a > b;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    int a[n + 1];
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+    }
+
+    int m;
+    cin >> m;
+    int ans[m + 1];
+
+    for (int i = 1; i <= m; i++)
+    {
+        int l, r, k;
+        cin >> l >> r >> k;
+        int temp[n + 1];
+        for (int j = 1; j <= n; j++)
+        {
+            temp[j] = a[j];
+        }
+        sort(temp + l, temp + r + 1, cmp); // 注意第二个参数时temp+r+1，这个“+1”不能漏了
+        ans[i] = temp[l + k - 1];
+    }
+    for (int i = 1; i <= m; i++)
+    {
+        cout << ans[i] << endl;
+    }
+    return 0;
+}
+*/
