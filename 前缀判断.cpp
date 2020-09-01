@@ -2,8 +2,8 @@
 /*
 前缀判断
 如下的代码判断 needle_start 指向的串是否为 haystack_start 指向的串的前缀，
-
 如不是， 则返回NULL。
+
 比如："abcd1234" 就包含了 "abc" 为前缀
 输出： 是
 */
