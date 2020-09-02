@@ -14,7 +14,7 @@
 int main(void)
 {
     int a, b, c, d, e;
-    int cnt = 0; //用于记录个数
+    int cnt = 0; // 用于记录满足指定条件的算式的个数
     for (a = 1; a <= 9; a++)
         for (b = 1; b <= 9; b++)
             for (c = 1; c <= 9; c++)

@@ -6,8 +6,9 @@
 输出格式
 按从小到大的顺序输出满足条件的四位十进制数。
 */
+
 // #include <stdio.h>
-// int main(void)
+// int main()
 // {
 //     int a, b, c, d;
 //     for (int i = 1000; i <= 9999; i++)
