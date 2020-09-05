@@ -1,6 +1,6 @@
 // 老鼠走迷官
 /*
-说明 
+说明
 老鼠走迷宫是递回求解的基本题型，我们在二维阵列中
 使用 2 表示迷宫墙壁，
 使用 1 来表示老鼠的行走路径，
@@ -58,18 +58,19 @@ int main()
     }
     return 0;
 }
-bool visit(int i, int j) //递归地求解老鼠该走的道路
+
+bool visit(int i, int j) // 递归地求解老鼠该走的道路
 {
     maze[i][j] = 1;
-    if (i == endI && j == endJ) //如果到达了指定的出发点
+    if (i == endI && j == endJ) // 如果到达了指定的出发点
         hasFound = true;
-    if (hasFound != 1 && maze[i][j + 1] == 0)
+    if (hasFound != true && maze[i][j + 1] == 0)
         visit(i, j + 1);
-    if (hasFound != 1 && maze[i + 1][j] == 0)
+    if (hasFound != true && maze[i + 1][j] == 0)
         visit(i + 1, j);
-    if (hasFound != 1 && maze[i][j - 1] == 0)
+    if (hasFound != true && maze[i][j - 1] == 0)
         visit(i, j - 1);
-    if (hasFound != 1 && maze[i - 1][j] == 0)
+    if (hasFound != true && maze[i - 1][j] == 0)
         visit(i - 1, j);
     if (!hasFound)
         maze[i][j] = 0;
