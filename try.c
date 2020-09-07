@@ -1,10 +1,6 @@
 #include <stdio.h>
-int fun()
-{
-    printf("00");
-}
 int main()
 {
-    fun();
+    printf("%d", sizeof(int));
     return 0;
 }

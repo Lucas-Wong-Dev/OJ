@@ -41,6 +41,7 @@
         "cerrno": "cpp",
         "cfloat": "cpp",
         "climits": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "vector": "cpp"
     }
 }
