@@ -1,5 +1,7 @@
 // 字母图形
+// AC
 /*
+利用字母可以组成一些美丽的图形，下面给出了一个例子：
 ABCDEFG 
 BABCDEF 
 CBABCDE 
@@ -33,9 +35,9 @@ int main()
 {
     int n, m;
     cin >> n >> m;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 0; j < m; j++)
+        for (int j = 1; j <= m; j++)
         {
             cout << char('A' + abs(i - j));
         }
