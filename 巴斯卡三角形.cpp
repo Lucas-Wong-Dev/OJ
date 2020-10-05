@@ -17,11 +17,11 @@ long combi(int n, int m)
 {
     long ans = 1;
     for (int i = 1; i <= m; i++){
-        printf("%d*(%d-%d+1)/%d=", ans, n, i, i);
+        // printf("%d*(%d-%d+1)/%d=", ans, n, i, i);
         ans = ans * (n - i + 1) / i;
-        printf("%d\n", ans);
+        // printf("%d\n", ans);
     }
-    printf("--->%d", ans);
+    // printf("--->%d", ans);
     return ans;
 }
 void paint()
@@ -46,7 +46,7 @@ void paint()
 }
 int main()
 {
-    // paint();
-    combi(3, 2);
+    paint();
+    // combi(3, 2);
     return 0;
 }
