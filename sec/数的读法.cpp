@@ -1,4 +1,5 @@
 // 数的读法
+// AC
 /*
 问题描述
 Tom 教授正在给研究生讲授一门关于基因的课程，有一件事情让他颇为头疼：一条染色体上有成千上万个碱基对，它们从0开始编号，到几百万，几千万，甚至上亿。
@@ -28,21 +29,21 @@ shi er yi san qian si bai wu shi liu wan qi qian ling jiu
 
 #include <iostream>
 using namespace std;
-string b[10] = {"ling ", "yi ", "er ", "san ", "si ", "wu ", "liu ", "qi ", "ba ", "jiu "};
+string num[10] = {"ling ", "yi ", "er ", "san ", "si ", "wu ", "liu ", "qi ", "ba ", "jiu "};
 string func(string t)
 {
     string ans;
     int lenOft = t.length();
     if (lenOft >= 4) // lenOft >= 4
     {
-        ans += b[t[0] - '0'];
+        ans += num[t[0] - '0'];
         ans += "qian ";
     }
     if (lenOft >= 3) // lenOft == 3
     {
         if (t[lenOft - 3] != '0')
         {
-            ans += b[t[lenOft - 3] - '0'];
+            ans += num[t[lenOft - 3] - '0'];
             ans += "bai ";
         }
     }
@@ -61,7 +62,7 @@ string func(string t)
         }
         if (t[lenOft - 2] != '0' && t[lenOft - 2] != '1')
         {
-            ans += b[t[lenOft - 2] - '0'];
+            ans += num[t[lenOft - 2] - '0'];
             ans += "shi ";
         }
     }
@@ -69,7 +70,7 @@ string func(string t)
     {
         if (t[lenOft - 1] != '0')
         {
-            ans += b[t[lenOft - 1] - '0'];
+            ans += num[t[lenOft - 1] - '0'];
         }
     }
     return ans;
@@ -115,16 +116,15 @@ int main()
         for (int i = lenOfs - 4; i < lenOfs; i++)
         {
             // if (i < 0)
-            //     continue; // 这两行代码实际上没必要加上，因为只要程序进入了这个for循环，lenOfs就必然大于等于5，i=lenOfs-4就必然大于等于1
+            //     continue; // 这两行代码实际上没必要加上，因为只要程序进入了这个for循环，lenOfs就必然大于等于5，i=lenOfs-4就必然大于等于1，即i不可能小于0
             if (flag == false && s[i] == '0')
             {
                 continue;
             }
             if (
-                (i == lenOfs - 1 && s[i - 1] == '0') || 
-                (i == lenOfs - 2 && s[i - 1] == '0') || 
-                (i == lenOfs - 3 && s[i - 1] == '0')
-            )
+                (i == lenOfs - 1 && s[i - 1] == '0') ||
+                (i == lenOfs - 2 && s[i - 1] == '0') ||
+                (i == lenOfs - 3 && s[i - 1] == '0'))
                 cout << "ling ";
             sub += s[i];
             flag = true;
