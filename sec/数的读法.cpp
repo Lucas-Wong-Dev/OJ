@@ -27,117 +27,241 @@ shi er yi san qian si bai wu shi liu wan qi qian ling jiu
 shi er yi san qian si bai wu shi liu wan qi qian ling jiu
 */
 
+// #include <iostream>
+// using namespace std;
+// string num[10] = {"ling ", "yi ", "er ", "san ", "si ", "wu ", "liu ", "qi ", "ba ", "jiu "};
+// string func(string t)
+// {
+//     string ans;
+//     int lenOft = t.length();
+//     if (lenOft >= 4) // lenOft >= 4
+//     {
+//         ans += num[t[0] - '0'];
+//         ans += "qian ";
+//     }
+//     if (lenOft >= 3) // lenOft == 3
+//     {
+//         if (t[lenOft - 3] != '0')
+//         {
+//             ans += num[t[lenOft - 3] - '0'];
+//             ans += "bai ";
+//         }
+//     }
+//     if (lenOft >= 2) // lenOft == 2
+//     {
+//         if (t[lenOft - 2] == '1')
+//         {
+//             if (lenOft != 2)
+//             {
+//                 ans += "yi shi ";
+//             }
+//             else
+//             {
+//                 ans += "shi ";
+//             }
+//         }
+//         if (t[lenOft - 2] != '0' && t[lenOft - 2] != '1')
+//         {
+//             ans += num[t[lenOft - 2] - '0'];
+//             ans += "shi ";
+//         }
+//     }
+//     if (lenOft >= 1) // lenOft == 1
+//     {
+//         if (t[lenOft - 1] != '0')
+//         {
+//             ans += num[t[lenOft - 1] - '0'];
+//         }
+//     }
+//     return ans;
+// }
+
+// int main()
+// {
+//     string s;
+//     cin >> s;
+//     int lenOfs = s.length();
+//     string sub;
+//     if (lenOfs == 10)
+//     {
+//         sub = s.substr(0, 2);
+//         cout << func(sub) << "yi ";
+//     }
+//     if (lenOfs == 9)
+//     {
+//         sub = s.substr(0, 1);
+//         cout << func(sub) << "yi ";
+//     }
+//     sub = "";
+//     bool flag = false;
+//     if (lenOfs >= 5)
+//     {
+//         for (int i = lenOfs - 8; i < lenOfs - 4; i++)
+//         {
+//             if (i < 0)
+//                 continue;
+//             if (flag == false && s[i] == '0')
+//             {
+//                 continue;
+//             }
+//             sub += s[i];
+//             flag = true;
+//         }
+//         if (flag == true)
+//         {
+//             cout << func(sub) << "wan ";
+//         }
+//         sub = "";
+//         flag = false;
+//         for (int i = lenOfs - 4; i < lenOfs; i++)
+//         {
+//             // if (i < 0)
+//             //     continue; // 这两行代码实际上没必要加上，因为只要程序进入了这个for循环，lenOfs就必然大于等于5，i=lenOfs-4就必然大于等于1，即i不可能小于0
+//             if (flag == false && s[i] == '0')
+//             {
+//                 continue;
+//             }
+//             if (
+//                 (i == lenOfs - 1 && s[i - 1] == '0') ||
+//                 (i == lenOfs - 2 && s[i - 1] == '0') ||
+//                 (i == lenOfs - 3 && s[i - 1] == '0'))
+//                 cout << "ling ";
+//             sub += s[i];
+//             flag = true;
+//         }
+//     }
+//     if (lenOfs <= 4)
+//     {
+//         sub = s;
+//         flag = true;
+//     }
+//     if (flag == true)
+//     {
+//         cout << func(sub);
+//     }
+//     return 0;
+// }
+
 #include <iostream>
+
 using namespace std;
-string num[10] = {"ling ", "yi ", "er ", "san ", "si ", "wu ", "liu ", "qi ", "ba ", "jiu "};
-string func(string t)
+
+const char *digit[] = {
+    "ling", "yi", "er", "san", "si",
+    "wu", "liu", "qi", "ba", "jiu",
+    "shi", "bai", "qian", "wan", "yi"};
+
+const int BAI = 11;
+const int QIAN = 12;
+const int WAN = 13;
+const int YI = 14;
+
+bool no_print = true;
+void print_single_digit(int n)
 {
-    string ans;
-    int lenOft = t.length();
-    if (lenOft >= 4) // lenOft >= 4
+    if (!no_print)
     {
-        ans += num[t[0] - '0'];
-        ans += "qian ";
+        cout << " " << digit[n];
     }
-    if (lenOft >= 3) // lenOft == 3
+    else
     {
-        if (t[lenOft - 3] != '0')
-        {
-            ans += num[t[lenOft - 3] - '0'];
-            ans += "bai ";
-        }
+        no_print = false;
+        cout << digit[n];
     }
-    if (lenOft >= 2) // lenOft == 2
+}
+
+void print_dual_digit(int n, bool is_head)
+{
+    // if (!is_head || n < 10 || n >= 20) // AC
+    if (!is_head || n >= 20) // AC
     {
-        if (t[lenOft - 2] == '1')
-        {
-            if (lenOft != 2)
-            {
-                ans += "yi shi ";
-            }
-            else
-            {
-                ans += "shi ";
-            }
-        }
-        if (t[lenOft - 2] != '0' && t[lenOft - 2] != '1')
-        {
-            ans += num[t[lenOft - 2] - '0'];
-            ans += "shi ";
-        }
+        print_single_digit(n / 10);
     }
-    if (lenOft >= 1) // lenOft == 1
+    print_single_digit(10);
+    if (n % 10 != 0)
     {
-        if (t[lenOft - 1] != '0')
-        {
-            ans += num[t[lenOft - 1] - '0'];
-        }
+        print_single_digit(n % 10);
     }
-    return ans;
+}
+
+void print_tri_digit(int n)
+{
+    print_single_digit(n / 100);
+    print_single_digit(BAI);
+    int t = n % 100;
+    if (t > 0 && t < 10)
+    {
+        print_single_digit(0);
+        print_single_digit(n % 10);
+    }
+    else if (t >= 10)
+    {
+        print_dual_digit(t, false);
+    }
+}
+
+bool print_quad_digit(int n, bool is_head)
+{
+    int t = n / 1000;
+    if (t != 0)
+    {
+        print_single_digit(t);
+        print_single_digit(QIAN);
+    }
+
+    n %= 1000;
+    if (n / 100 != 0)
+    {
+        if (t == 0 && !is_head)
+        {
+            print_single_digit(0);
+        }
+        print_tri_digit(n);
+        return true;
+    }
+
+    // if (n != 0 && ((n != 0) ^ (is_head))) // AC
+    if (n != 0 && is_head == false) // AC
+    {
+        print_single_digit(0);
+    }
+
+    n %= 100;
+    if (n / 10 != 0)
+    {
+        print_dual_digit(n, is_head);
+        return true;
+    }
+
+    n %= 10;
+    if (n != 0)
+    {
+        print_single_digit(n);
+        return true;
+    }
+    return false;
 }
 
 int main()
 {
-    string s;
-    cin >> s;
-    int lenOfs = s.length();
-    string sub;
-    if (lenOfs == 10)
+    int n; // INT_MAX等于2147483647，2000000000<2147483647，所以用int类型的变量存放输入数据时没问题的
+    cin >> n;
+    if (n == 0)
     {
-        sub = s.substr(0, 2);
-        cout << func(sub) << "yi ";
+        print_single_digit(n);
+        return 0;
     }
-    if (lenOfs == 9)
+    bool is_head = true;
+    if (print_quad_digit(n / 100000000, is_head))
     {
-        sub = s.substr(0, 1);
-        cout << func(sub) << "yi ";
+        print_single_digit(YI);
+        is_head = false;
     }
-    sub = "";
-    bool flag = false;
-    if (lenOfs >= 5)
+    if (print_quad_digit(n / 10000 % 10000, is_head))
     {
-        for (int i = lenOfs - 8; i < lenOfs - 4; i++)
-        {
-            if (i < 0)
-                continue;
-            if (flag == false && s[i] == '0')
-            {
-                continue;
-            }
-            sub += s[i];
-            flag = true;
-        }
-        if (flag == true)
-        {
-            cout << func(sub) << "wan ";
-        }
-        sub = "";
-        flag = false;
-        for (int i = lenOfs - 4; i < lenOfs; i++)
-        {
-            // if (i < 0)
-            //     continue; // 这两行代码实际上没必要加上，因为只要程序进入了这个for循环，lenOfs就必然大于等于5，i=lenOfs-4就必然大于等于1，即i不可能小于0
-            if (flag == false && s[i] == '0')
-            {
-                continue;
-            }
-            if (
-                (i == lenOfs - 1 && s[i - 1] == '0') ||
-                (i == lenOfs - 2 && s[i - 1] == '0') ||
-                (i == lenOfs - 3 && s[i - 1] == '0'))
-                cout << "ling ";
-            sub += s[i];
-            flag = true;
-        }
+        print_single_digit(WAN);
+        is_head = false;
     }
-    if (lenOfs <= 4)
-    {
-        sub = s;
-        flag = true;
-    }
-    if (flag == true)
-    {
-        cout << func(sub);
-    }
-    return 0;
+    print_quad_digit(n % 10000, is_head);
+    cout << endl;
 }

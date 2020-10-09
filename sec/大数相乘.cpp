@@ -18,9 +18,9 @@ void bigmul(int x, int y, int r[])
     r[3] = m1 / base + m2 % base + m3 % base;
     r[2] = m2 / base + m3 / base + m4 % base;
     r[1] = m4 / base;
-
+	
     // printf("%d %d %d %d\n", r[1], r[2], r[3], r[4]);
-    r[2] += r[3] / base;
+    r[2] += r[3] / base; // 小块在进行纵向累加后，需要进行进位校正
     // printf("%d %d %d %d\n", r[1], r[2], r[3], r[4]);
     r[3] = r[3] % base;
     // printf("%d %d %d %d\n", r[1], r[2], r[3], r[4]);

@@ -9,10 +9,18 @@
 //     return 0;
 // }
 
+// #include <stdio.h>
+// int main()
+// {
+//     char s[3][4] = {"123","456","789"};
+//     printf("%c", s[1][1]);
+//     return 0;
+// }
+
 #include <stdio.h>
+// #include <limits.h>
 int main()
 {
-    char s[3][4] = {"123","456","789"};
-    printf("%c", s[1][1]);
+    printf("%d\n", '\0');
     return 0;
 }
