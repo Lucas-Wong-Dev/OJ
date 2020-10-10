@@ -1,26 +1,10 @@
-// #include <iostream>
-// using namespace std;
-// int main()
-// {
-//     char ch = 'a';
-//     cout << ch << endl;
-//     cout << toupper(ch) << endl;
-//     cout << ch << endl; // 可见toupper函数并不会改变所输入的字符的大小写
-//     return 0;
-// }
-
-// #include <stdio.h>
-// int main()
-// {
-//     char s[3][4] = {"123","456","789"};
-//     printf("%c", s[1][1]);
-//     return 0;
-// }
-
 #include <stdio.h>
-// #include <limits.h>
 int main()
 {
-    printf("%d\n", '\0');
+    freopen("test.txt", "w", stdout);
+    for (int i = 1; i <= 100; i++)
+    {
+        printf("%d ", i);
+    }
     return 0;
 }
