@@ -1,4 +1,5 @@
-// 传球游戏
+// 传球游戏-动态规划
+// AC
 /*
 问题描述
 上体育课的时候，小蛮的老师经常带着同学们一起做游戏。这次，老师带着同学们一起做传球游戏。
@@ -32,72 +33,52 @@
 15 30
 155117522
 */
-#include <stdio.h>
-#include <math.h>
+
+// http://lx.lanqiao.cn/problem.page?gpid=T97
+#include <iostream> // AC
+using namespace std;
+
 const int MAX_n = 30;
-const int MAX_m = 30;
-long long sum = 0;
+int cases[MAX_n + 1][MAX_n + 1] = {0}; // cases[i][j] 表示剩余i步且在球在j号同学手上时，球传回到1号同学的传球方案数
+// 如果剩余步骤为0，这时如果球在1号手上，说明方案成立，为1；如果球在别人手上，说明方案不成立，为0
 
-void fun(int curP, int n, int m)
+int cycleSize = 0; // n
+int stepLeft = 0;  // m
+
+inline int Next(int k)
 {
-    // printf("curP==%d n==%d m==%d\n", curP, n, m);
-    if (m == 0)
+    return k == cycleSize ? 1 : k + 1;
+}
+
+inline int Prev(int k)
+{
+    return k == 1 ? cycleSize : k - 1;
+}
+
+int CalcCases()
+{
+    cases[0][1] = 1;
+    for (int i = 1; i <= stepLeft; i++) // 从剩余步骤为1的情况开始递推
     {
-        if (curP == 1)
+        for (int j = 1; j <= cycleSize; j++)
         {
-            sum++;
+            cases[i][j] = cases[i - 1][Prev(j)] + cases[i - 1][Next(j)];
         }
-        // printf("--> sum==%d m==%d curP=%d\n", sum, m, curP);
-        return;
     }
-
-    if (curP - m > 1 && curP + m <= n)
-    {
-        return;
-    }
-    else if (curP - m == 1 && curP + m == n + 1)
-    {
-        sum += 2;
-        return;
-    }
-
-    if (curP + 1 == n + 1)
-    {
-        fun(1, n, m - 1);
-    }
-    else
-    {
-        fun(curP + 1, n, m - 1);
-    }
-
-    if (curP - 1 == 0)
-    {
-        fun(n, n, m - 1);
-    }
-    else
-    {
-        fun(curP - 1, n, m - 1);
-    }
+    // for (int i = 0; i <= cycleSize; i++)
+    // {
+    //     for (int j = 0; j <= stepLeft; j++)
+    //     {
+    //         cout << cases[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    return cases[stepLeft][1]; // cases[stepLeft][1] 表示剩余stepLeft步且在球在1号同学手上时，球传回到1号同学的传球方案数
 }
 
 int main()
 {
-    int n, m;
-    scanf("%d%d", &n, &m);
-    fun(1, n, m);
-    // printf("%d\t%d\t%lld\n", n, m, sum);
-    printf("%lld\n", sum);
-
-    // int n, m;
-    // for (n = 0; n <= MAX_n; n++)
-    // {
-    //     for (m = 0; m <= MAX_m; m++)
-    //     {
-    //         fun(1, n, m);
-    //         printf("%d\t%d\t%lld\n", n, m, sum);
-    //         sum = 0;
-    //     }
-    // }
-
+    cin >> cycleSize >> stepLeft; // n m
+    cout << CalcCases() << endl;
     return 0;
 }

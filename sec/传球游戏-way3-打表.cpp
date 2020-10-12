@@ -1,5 +1,5 @@
-// 传球游戏
-// AC - 打表法
+// 传球游戏-打表法
+// AC
 #include <stdio.h>
 
 long long ans[31][31] = {
