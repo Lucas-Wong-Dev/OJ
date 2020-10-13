@@ -32,10 +32,10 @@
 #include <stdio.h>
 #include <string.h>
 
-const int MAX_N = 100;
-int D[MAX_N + 1][MAX_N + 1];
+const int MAX_n = 100;
+int D[MAX_n + 1][MAX_n + 1];
 // D(i, j):表示第i行第j个数字。其中，i与j都从1开始算，从上向下编行号)
-int aMaxSum[MAX_N + 1][MAX_N + 1];
+int aMaxSum[MAX_n + 1][MAX_n + 1];
 // aMaxSum(i, j):代表从第i行的第j个数字到底边的最佳路径的数字之和，则本题是求aMaxSum(1, 1)
 
 // 从某个D(i, j)出发，显然下一步有两种可能：要么走左分支D(i+1, j)，要么右分支D(i+1, j+1)

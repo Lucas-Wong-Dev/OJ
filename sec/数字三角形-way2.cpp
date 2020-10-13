@@ -3,12 +3,12 @@
 // 从aMaxSum[N-1]这一行元素开始向上逐行递推，就能求得aMaxSum[1][1]的值了
 #include <stdio.h> // AC
 
-const int MAX_N = 100;
+const int MAX_n = 100;
 
 int main()
 {
-    int D[MAX_N + 1][MAX_N + 1];
-    int aMaxSum[MAX_N + 1][MAX_N + 1];
+    int D[MAX_n + 1][MAX_n + 1];
+    int aMaxSum[MAX_n + 1][MAX_n + 1];
 
     int N;
     scanf("%d", &N);
