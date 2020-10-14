@@ -56,7 +56,8 @@ inline int Prev(int k)
 
 int CalcCases()
 {
-    cases[0][1] = 1;                    // 当剩余步骤为0时如果球在1号手上，说明方案成立，为1；如果球在别人手上，说明方案不成立，为0
+    cases[0][1] = 1; // 当剩余步骤为0时如果球在1号手上，说明方案成立，cases[0][1]取1；如果球在别人手上，说明方案不成立，cases[0][1]取0
+
     for (int i = 1; i <= stepLeft; i++) // 从剩余步骤为1的情况开始递推
     {
         for (int j = 1; j <= cycleSize; j++)
@@ -72,7 +73,7 @@ int CalcCases()
     //     }
     //     cout << endl;
     // }
-    return cases[stepLeft][1]; // cases[stepLeft][1] 表示剩余stepLeft步且在球在1号同学手上时，球传回到1号同学的传球方案数
+    return cases[stepLeft][1]; // cases[stepLeft][1] 表示剩余stepLeft步且球在1号同学手上时，球传回到1号同学的传球方案数
 }
 
 int main()
