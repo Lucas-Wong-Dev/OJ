@@ -10,11 +10,11 @@
 #include <stdio.h>
 int main()
 {
-    int num = 2;// 对折0次再切可得到2根面条
+    int num = 2; // 对折0次再切可得到2根面条
     for (int i = 1; i <= 10; i++)
     {
         num = num * 2 - 1;
-        printf("%d\t%d\n", i, num);// 对折i次再切可得到num根面条
+        printf("%d\t%d\n", i, num); // 对折i次再切可得到num根面条
     }
     return 0;
 }
