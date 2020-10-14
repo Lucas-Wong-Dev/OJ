@@ -24,7 +24,7 @@
 #include <math.h>
 int main()
 {
-    double a, b, c;
+    double a, b, c; // 虽然本题的输入是3个整数，但解题时完全可以设置double类型的变量存放这3个整数，以避免求t时t的小数点部分被舍弃
     scanf("%lf%lf%lf", &a, &b, &c);
     double t = (a + b + c) / 2;
     double area = sqrt(t * (t - a) * (t - b) * (t - c));

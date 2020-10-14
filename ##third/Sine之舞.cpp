@@ -21,25 +21,28 @@ FJ想让奶牛们计算Sn的值，请你帮助FJ打印出Sn的完整表达式，
 */
 #include <iostream>
 using namespace std;
+const int N_MAX = 200;
 int main()
 {
     int N;
     cin >> N;
-    string A[201];
+    string A[N_MAX + 1];
 
     string S;
+
     for (int i = 0; i < N; i++)
     {
         if (i == 0)
         {
             A[i] = "sin(1";
-            // cout << A[i] << endl;
+            // cout << A[i] << endl; //
             continue;
         }
         A[i] = A[i - 1];
         if (i % 2 == 1)
         {
-            A[i] += "-";
+            // A[i] += "-"; // AC 中、英文状态下输入的
+            A[i] += "–"; // AC 样例输出中的
         }
         else
         {
@@ -47,19 +50,18 @@ int main()
         }
         A[i] += "sin(";
         A[i] += (char)(i + '1');
-        // cout << A[i] << endl;
+        // cout << A[i] << endl; //
     }
-    // cout << "------------" << endl;
+    // cout << "------------" << endl; //
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j <= i; j++)
         {
             A[i] += ")";
-            // cout << A[i] << endl;
         }
-        // cout << "---" << endl;
+        // cout << A[i] << endl; //
     }
-    // cout << "------------" << endl;
+    // cout << "------------" << endl; //
     for (int i = 1; i <= N - 1; i++)
     {
         S += "(";

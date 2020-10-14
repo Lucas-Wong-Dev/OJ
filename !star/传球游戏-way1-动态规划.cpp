@@ -1,5 +1,6 @@
 // 传球游戏-动态规划
 // AC
+// http://lx.lanqiao.cn/problem.page?gpid=T97
 /*
 问题描述
 上体育课的时候，小蛮的老师经常带着同学们一起做游戏。这次，老师带着同学们一起做传球游戏。
@@ -33,14 +34,12 @@
 15 30
 155117522
 */
-
-// http://lx.lanqiao.cn/problem.page?gpid=T97
 #include <iostream> // AC
 using namespace std;
 
 const int MAX_n = 30;
-int cases[MAX_n + 1][MAX_n + 1] = {0}; // cases[i][j] 表示剩余i步且在球在j号同学手上时，球传回到1号同学的传球方案数
-// 如果剩余步骤为0，这时如果球在1号手上，说明方案成立，为1；如果球在别人手上，说明方案不成立，为0
+const int MAX_m = 30;
+int cases[MAX_n + 1][MAX_m + 1] = {0}; // cases[i][j] 表示剩余i步且在球在j号同学手上时，球传回到1号同学的传球方案数
 
 int cycleSize = 0; // n
 int stepLeft = 0;  // m
@@ -57,7 +56,7 @@ inline int Prev(int k)
 
 int CalcCases()
 {
-    cases[0][1] = 1;
+    cases[0][1] = 1;                    // 当剩余步骤为0时如果球在1号手上，说明方案成立，为1；如果球在别人手上，说明方案不成立，为0
     for (int i = 1; i <= stepLeft; i++) // 从剩余步骤为1的情况开始递推
     {
         for (int j = 1; j <= cycleSize; j++)

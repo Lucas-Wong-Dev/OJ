@@ -16,7 +16,7 @@
 dp[1][1]=a[1][1] 顶部边界
 dp[i][1]=dp[i-1][1]+a[i][1] 第1列的边界
 dp[i][i]=dp[i-1][i-1]+a[i][i] 对角线的边界
-dp[i][j]=min(dp[i-1][j-1], dp[i-1][j])+a[i][j]  其他有两条达到路径的结点
+dp[i][j]=min(dp[i-1][j-1], dp[i-1][j])+a[i][j] 其他有两条达到路径的结点
 */
 #include <stdio.h>
 #include <string.h>
@@ -56,9 +56,9 @@ int searchMinimalSum(int n, int a[][MAX_n + 1], int minimalSum[][MAX_n + 1], int
         }
     }
 
-    int sum = minimalSum[n][1];  // 最小和
+    int sum = minimalSum[n][1];  // sum为从顶部到底部的最小和
     int column = 1;              // 终点结点的列下标
-    for (int j = 2; j <= n; j++) // 求出最小和、终点结点的列下标
+    for (int j = 2; j <= n; j++) // 求出从顶部到底部的最小和、终点结点的列下标
     {
         if (minimalSum[n][j] < sum)
         {
@@ -104,9 +104,9 @@ int searchMaximalSum(int n, int a[][MAX_n + 1], int maximalSum[][MAX_n + 1], int
         }
     }
 
-    int sum = maximalSum[n][1];  // 最大和
+    int sum = maximalSum[n][1];  // sum为从顶部到底部的最大和
     int column = 1;              // 终点结点的列下标
-    for (int j = 2; j <= n; j++) // 求出最大和、终点结点的列下标
+    for (int j = 2; j <= n; j++) // 求出从顶部到底部的最大和、终点结点的列下标
     {
         if (maximalSum[n][j] > sum)
         {
@@ -121,7 +121,7 @@ int searchMaximalSum(int n, int a[][MAX_n + 1], int maximalSum[][MAX_n + 1], int
 
 void getNumsOnPath(int n, int a[][MAX_n + 1], int columnIndexOfPreNode[][MAX_n + 1], int k, int numsOnPath[MAX_n + 1])
 {
-    // 在求出从顶部到底部的最大/小和sum之后，通过columnIndexOfPreNode[n][k]可求出求得反向路径上的数字序列（即从叶结点a[n][k]到根结点a[1][1]的一条路径上的数字序列），将该数字序列反转存入numsOnPath数组，即可得到从顶部到底部的最大/小和路径
+    // 在求出从顶部到底部的最大/小和sum之后，通过columnIndexOfPreNode[n][k]可求出求得反向路径上的数字序列（即从叶结点a[n][k]到根结点a[1][1]的最大/小和路径上的数字序列），将该数字序列反转存入numsOnPath数组，即可得到从顶部到底部的最大/小和路径上的数字序列
     numsOnPath[n] = a[n][k];
     int j = columnIndexOfPreNode[n][k];
     for (int i = n - 1; i >= 2; i--)
