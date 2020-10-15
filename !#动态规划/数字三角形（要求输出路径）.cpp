@@ -3,14 +3,13 @@
 要求
 在数字三角形的基础上，还要输出该路径
 
-首先输入N，
+首先输入N
 接下来的1～N行，第i行输入i个整数，
 
-输出分为2行，
+输出分为2行
 第一行为“最大/小和路径上的数字”，第2行为“从顶部到底部的最大/小和”
 */
-/* 
-状态转移方程
+/*
 这里有两个边界，即第1列和对角线，达到它们中结点的路径只有一条而不是常规的两条
 所以状态转移方程如下：
 dp[1][1]=D[1][1] 顶部边界
@@ -138,9 +137,9 @@ int main()
     int minSum[MAX_N + 1][MAX_N + 1] = {0}; // minSum[i][j]表示从根结点D[1][1]到结点D[i][j]的最小和
     int columnIndexOfPreNode1[MAX_N + 1][MAX_N + 1] = {0};
     int columnIndexOfPreNode2[MAX_N + 1][MAX_N + 1] = {0};
-    // columnIndexOfPreNode2[i][j]里保存的是什么？从根结点D[1][1]到结点D[i][j]的最小和路径上，结点D[i][j]的前驱结点的列下标
+    // columnIndexOfPreNode2[i][j]里保存的是什么？从根结点D[1][1]到结点D[i][j]的最大和路径上，结点D[i][j]的前驱结点的列下标
     // 由于结点D[i][j]的前驱结点只有两个，即结点D[i-1][j-1]和结点D[i-1][j]，这两个结点的行下标都是i-1，因此记录其前驱结点的列下标即可唯一确定其前驱结点
-    // 在求出从顶部到底部的最小和sum2之后，通过columnIndexOfPreNode2[N][k]可求出求出反向路径（即从叶结点D[N][k]到根结点D[1][1]的一条路径），最后正向输出该路径即可得到从顶部到底部的最小和路径
+    // 在求出从顶部到底部的最大和sum1之后，通过columnIndexOfPreNode1[N][k]可求出求出反向路径（即从叶结点D[N][k]到根结点D[1][1]的一条路径），最后正向输出该路径即可得到从顶部到底部的最小和路径
     int numsOnPath1[MAX_N + 1] = {0};
     int numsOnPath2[MAX_N + 1] = {0};
 
@@ -154,27 +153,27 @@ int main()
         }
     }
 
-    // printf("---------------------\n");
+    printf("---------------------\n");
     int k1 = -1;
     int sum1 = getMaxSum(N, D, maxSum, columnIndexOfPreNode1, &k1); // sum1为从顶部到底部的最大和
-    // getNumsOnPath(N, D, columnIndexOfPreNode1, k1, numsOnPath1);
-    // for (int i = 1; i <= N; i++) // 输出从顶部到底部的最大和路径上的数字
-    // {
-    //     printf("%d ", numsOnPath1[i]);
-    // }
-    // printf("\n");
+    getNumsOnPath(N, D, columnIndexOfPreNode1, k1, numsOnPath1);
+    for (int i = 1; i <= N; i++) // 输出从顶部到底部的最大和路径上的数字
+    {
+        printf("%d ", numsOnPath1[i]);
+    }
+    printf("\n");
     printf("%d\n", sum1); // 输出从顶部到底部的最大和
 
-    // printf("---------------------\n");
-    // int k2 = -1;
-    // int sum2 = getMinSum(N, D, minSum, columnIndexOfPreNode2, &k2); // sum2为从顶部到底部的最小和
-    // getNumsOnPath(N, D, columnIndexOfPreNode2, k2, numsOnPath2);
-    // for (int i = 1; i <= N; i++) // 输出从顶部到底部的最小和路径上的数字
-    // {
-    //     printf("%d ", numsOnPath2[i]);
-    // }
-    // printf("\n");
-    // printf("%d\n", sum2); // 输出从顶部到底部的最小和
+    printf("---------------------\n");
+    int k2 = -1;
+    int sum2 = getMinSum(N, D, minSum, columnIndexOfPreNode2, &k2); // sum2为从顶部到底部的最小和
+    getNumsOnPath(N, D, columnIndexOfPreNode2, k2, numsOnPath2);
+    for (int i = 1; i <= N; i++) // 输出从顶部到底部的最小和路径上的数字
+    {
+        printf("%d ", numsOnPath2[i]);
+    }
+    printf("\n");
+    printf("%d\n", sum2); // 输出从顶部到底部的最小和
 
     return 0;
 }

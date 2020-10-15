@@ -30,61 +30,21 @@ int main()
     int N;
     cin >> N;
     int *a = new int[N];
-    int elementWithMaxOccurrence, maxOccurrence = 1, currentElementOccurrence = 1;
+    int elemWithMaxOccur, maxOccur = 1, curElemOccur = 1;
 
     cin >> a[0];
-    elementWithMaxOccurrence = a[0];
+    elemWithMaxOccur = a[0];
 
     for (int i = 1; i < N; i++)
     {
         cin >> a[i];
         if (a[i] == a[i - 1])
         {
-            currentElementOccurrence++;
-            if (currentElementOccurrence > maxOccurrence)
-            {
-                maxOccurrence = currentElementOccurrence;
-                elementWithMaxOccurrence = a[i];
-            }
-        }
-        else
-        {
-            currentElementOccurrence = 1;
-        }
-    }
-
-    cout << elementWithMaxOccurrence;
-
-    delete[] a;
-
-    return 0;
-}
-
-
-/*
-#include <iostream>
-using namespace std;
-int main()
-{
-    int N;
-    cin >> N;
-    int arr[N];
-
-    int curElemOccur = 1;
-    int maxOccur = 1;
-
-    cin >> arr[0];
-    int elemWithMaxOccur = arr[0];
-
-    for (int i = 1; i < N; i++)
-    {
-        cin >> arr[i];
-        if (arr[i] == arr[i - 1])
-        {
             curElemOccur++;
             if (curElemOccur > maxOccur)
             {
-                elemWithMaxOccur = arr[i];
+                maxOccur = curElemOccur;
+                elemWithMaxOccur = a[i];
             }
         }
         else
@@ -93,8 +53,9 @@ int main()
         }
     }
 
-    cout << elemWithMaxOccur << endl;
-    
+    cout << elemWithMaxOccur;
+
+    delete[] a; // ★
+
     return 0;
 }
-*/

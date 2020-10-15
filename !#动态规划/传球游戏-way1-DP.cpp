@@ -39,7 +39,6 @@ using namespace std;
 
 const int MAX_n = 30;
 const int MAX_m = 30;
-int cases[MAX_n + 1][MAX_m + 1] = {0}; // cases[i][j] 表示剩余i步且在球在j号同学手上时，球传回到1号同学的传球方案数
 
 int cycleSize = 0; // n
 int stepLeft = 0;  // m
@@ -54,7 +53,7 @@ inline int Prev(int k)
     return k == 1 ? cycleSize : k - 1;
 }
 
-int CalcCases()
+int CalcCases(int cases[MAX_m + 1][MAX_n + 1])
 {
     cases[0][1] = 1; // 当剩余步骤为0时如果球在1号手上，说明方案成立，cases[0][1]取1；如果球在别人手上，说明方案不成立，cases[0][1]取0
 
@@ -78,7 +77,8 @@ int CalcCases()
 
 int main()
 {
-    cin >> cycleSize >> stepLeft; // n m
-    cout << CalcCases() << endl;
+    int cases[MAX_n + 1][MAX_m + 1] = {0}; // cases[i][j] 表示剩余i步且在球在j号同学手上时，球传回到1号同学的传球方案数
+    cin >> cycleSize >> stepLeft;          // n m
+    cout << CalcCases(cases) << endl;
     return 0;
 }
