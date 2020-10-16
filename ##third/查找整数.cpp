@@ -1,4 +1,6 @@
 // 查找整数
+// AC
+// http://lx.lanqiao.cn/problem.page?gpid=T9
 /*
 问题描述
 给出一个包含n个整数的数列，问整数a在数列中的第一次出现是第几个。  
@@ -15,60 +17,35 @@
 6
 1 9 4 8 3 9
 9
-
 样例输出
 2
 
 数据规模与约定
 1 <= n <= 1000。
 */
-#include <iostream>
+#include <iostream> // AC
 using namespace std;
+const int MAX_n = 1000;
 int main()
 {
+    int arr[MAX_n + 1];
     int n;
     cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cin >> arr[i];
     }
     int a;
     cin >> a;
     int pos = -1;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         if (arr[i] == a)
         {
-            pos = i + 1;
+            pos = i;
             break;
         }
     }
     cout << pos;
     return 0;
 }
-
-// #include <iostream>
-// using namespace std;
-// int main()
-// {
-//     int n;
-//     cin >> n;
-//     int a[n];
-//     for (int i = 0; i < n; i++)
-//         cin >> a[i];
-
-//     int t;
-//     cin >> t;
-
-//     int i;
-//     for (i = 0; i < n; i++)
-//         if (t == a[i])
-//             break;
-//     if (i == n) // 如果i==n，则说明没找到指定的数字
-//         cout << "-1";
-//     else
-//         cout << i + 1;
-
-//     return 0;
-// }
