@@ -7,7 +7,7 @@
 */
 
 #include <stdio.h>
-const int N = 12;
+const int N = 12; // 一共有12个空
 
 void fill(int x, int *seat, bool *visited)
 {
@@ -40,12 +40,12 @@ void fill(int x, int *seat, bool *visited)
 
     for (int i = 1; i <= 12; i++)
     {
-        if (visited[i] == false && i != 1 && i != 3 && i != 8)
+        if (visited[i] == false && i != 1 && i != 3 && i != 8) // 1、2、8这三个数字已经被填入了，所以当前讨论的第i号位置不能再填入这三个数字
         {
             seat[x] = i;
             visited[i] = true;
             fill(x + 1, seat, visited);
-            visited[i] = 0;
+            visited[i] = false;
         }
     }
 }
@@ -53,7 +53,7 @@ void fill(int x, int *seat, bool *visited)
 int main()
 {
     int seat[N + 1] = {0};
-    bool visited[N] = {false};
+    bool visited[N + 1] = {false};
 
     seat[1] = 1;
     visited[1] = true;

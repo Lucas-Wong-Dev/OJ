@@ -18,25 +18,26 @@
 数据规模和约定
 n<=2147483647
 */
-
 #include <stdio.h>
 #include <math.h>
-
 bool isPrime(int n)
 {
-    if (n % 2 == 0)
+    if (n <= 1)
         return false;
-
-    int t = (int)sqrt(n);
-    for (int i = 3; i <= t; i++)
+    else if (n == 2 || n == 3)
+        return true;
+    else
     {
-        if (n % i == 0)
+        int t = (int)sqrt(n);
+        for (int i = 2; i <= t; i++)
         {
-            return false;
+            if (n % i == 0)
+            {
+                return false;
+            }
         }
+        return true; // ★
     }
-
-    return true;
 }
 int getPrimeFactor(int n)
 {

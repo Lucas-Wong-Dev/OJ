@@ -1,4 +1,6 @@
 // 2的次幂表示
+// AC
+// http://lx.lanqiao.cn/problem.page?gpid=T235
 /*
 问题描述
 任何一个正整数都可以用2进制表示，例如：137的2进制表示为10001001。
@@ -42,6 +44,7 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
 void fun(int x)
 {
     int index = (int)(log(x) / log(2));
@@ -60,15 +63,16 @@ void fun(int x)
     else
     {
         cout << "2(";
-        fun(index);
+        fun(index); // ★
         cout << ")";
     }
-    if (remainingPart)
+    if (remainingPart) // ★
     {
         cout << "+";
         fun(remainingPart);
     }
 }
+
 int main()
 {
     int n;

@@ -29,6 +29,7 @@ int getLCM(int a, int b)
 {
     return a * b / getGCD(a, b);
 }
+
 int main()
 {
     // (2**32-1)-(2**16-1)*(2**16-1)==131070，所以int类型的变量（占4字节时）是完全能够对付这题的

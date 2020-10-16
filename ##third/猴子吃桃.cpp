@@ -33,6 +33,6 @@ int fun(int numOfPeach, int times) // 今天是倒数第times天，今天在小�
 }
 int main()
 {
-    cout << fun(1, 1) << endl;
+    cout << fun(1, 1) << endl; // 今天是倒数第1天，今天在小猴吃桃前还剩下1个桃子
     return 0;
 }
