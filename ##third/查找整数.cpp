@@ -23,7 +23,7 @@
 数据规模与约定
 1 <= n <= 1000。
 */
-#include <iostream> // AC
+#include <iostream>
 using namespace std;
 const int MAX_n = 1000;
 int main()

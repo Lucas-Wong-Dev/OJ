@@ -34,12 +34,12 @@ void Knap(int N, int W, int *weight, int *value) // 动态规划法求解0-1背�
                     dp[i - 1][r - weight[i]] + value[i]);
             }
         }
-    } // Knap()算法中含有两重for循环, 所以时间复杂度为O(N×W), 空间复杂度为O(N×W)
+    }
 }
 
 int Buildx(int N, int W, int *weight, int *value, int *totalWeightOfLoadedObjects) // 推导出最优解对应的解向量x
 {
-    int maxv = 0;     // 在最优解（能使放入背包的物品的总价值最大的放置方案）下，最终放入背包的物品的总价值
+    int maxv = 0;     // 在最优解下，最终放入背包的物品的总价值
     int i = N, r = W; // r是包的剩余载重量
     while (i >= 1)    // 判断在该放置方案中，物品i是否要被放入包中
     {
@@ -49,9 +49,9 @@ int Buildx(int N, int W, int *weight, int *value, int *totalWeightOfLoadedObject
         }
         else // 表示放入物品i
         {
-            select[i] = true;  // 选取物品i
-            maxv += value[i];  // 因为在该放置方案中，物品i需要被放入包，所以累计总价值要加上物品i的价值
-            r = r - weight[i]; // 因为在该放置方案中，物品i需要被放入包，所以包的剩余载重量要减去物品i的重量
+            select[i] = true; // 选取物品i
+            maxv += value[i]; // 因为在该放置方案中，物品i需要被放入包，所以累计总价值要加上物品i的价值
+            r -= weight[i];   // 因为在该放置方案中，物品i需要被放入包，所以包的剩余载重量要减去物品i的重量
         }
         i--;
     }
@@ -77,8 +77,7 @@ int main()
         printf("%d ", select[i]);
     }
     printf("\n%d %d\n", maxv, totalWeightOfLoadedObjects);
-    // printf("\n%d\n", dp[N][W]);
-    // --------------------------------------------
+    // ---------------------------------
     // bool equal = true;
     // for (int n1 = 0; n1 <= N; n1++)
     // {

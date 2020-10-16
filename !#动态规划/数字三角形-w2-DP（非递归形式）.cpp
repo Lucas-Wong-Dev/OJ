@@ -25,33 +25,20 @@ int main()
         maxSum[N][j] = D[N][j];
     }
 
-    for (int i = N; i > 1; i--) // 遍历maxSum矩阵的各行
+    for (int i = N - 1; i >= 1; i--) // 遍历maxSum矩阵的各行
     {
-        for (int j = 1; j <= i - 1; j++) // 求出maxSum矩阵中 第i行的各个元素 的值
-        // 注意：这里j取 1 ~ i-1
-        // 当i取N时，j取 1 ~ N-1
+        for (int j = 1; j <= i; j++) // 求出maxSum矩阵中 第i行的各个元素 的值
         {
-            if (maxSum[i][j] > maxSum[i][j + 1])
+            if (maxSum[i + 1][j] > maxSum[i + 1][j + 1])
             {
-                maxSum[i - 1][j] = maxSum[i][j] + D[i - 1][j];
+                maxSum[i][j] = maxSum[i + 1][j] + D[i][j];
             }
             else
             {
-                maxSum[i - 1][j] = maxSum[i][j + 1] + D[i - 1][j];
+                maxSum[i][j] = maxSum[i + 1][j + 1] + D[i][j];
             }
         }
     }
-
-    // printf("-------------\n");
-    // for (int i = 0; i <= N; i++)
-    // {
-    //     for (int j = 0; j <= N; j++)
-    //     {
-    //         printf("%d\t", maxSum[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-    // printf("-------------\n");
 
     printf("%d", maxSum[1][1]);
     return 0;

@@ -26,8 +26,12 @@
 样例输出
 30
 */
+// 子问题：从结点D[i][j]开始，到底边路径的最大和
+// 这个子问题和两个变量i和j相关，那么一个“状态”就是(i, j)的一组取值，即每个数字的位置就是一个“状态”
+// 该“状态”所对应的“值”：是从该位置开始，到底边的最佳路径上的数字之和
+
 #include <stdio.h>
-#include <string.h>
+#include <string.h> // 用到了memset函数 ★
 
 const int MAX_N = 100; // 数字三角形的最大行数
 int D[MAX_N + 1][MAX_N + 1];
@@ -40,22 +44,28 @@ int maxSum[MAX_N + 1][MAX_N + 1];
 // 如果朝D[i+1][j+1]走，那么得到的maxSum[i][j]就是maxSum[i+1][j+1] + D[i][j]
 // 所以，选择往哪里走，就看maxSum[i+1][j]和maxSum[i+1][j+1]哪个更大了
 
-int getMaxSum(int N, int i, int j)
+int getMaxSum(int i, int j, int N)
 {
     // 本函数的返回值：从结点D[i][j]开始，到底边的最大和
     if (i == N)
         return D[i][j];
 
     if (maxSum[i + 1][j] == -1) // 如果“从结点D[i][j]开始，到底边的最大和”尚未算过
-        maxSum[i + 1][j] = getMaxSum(N, i + 1, j);
+        maxSum[i + 1][j] = getMaxSum(i + 1, j, N);
 
     if (maxSum[i + 1][j + 1] == -1)
-        maxSum[i + 1][j + 1] = getMaxSum(N, i + 1, j + 1);
+        maxSum[i + 1][j + 1] = getMaxSum(i + 1, j + 1, N);
 
     if (maxSum[i + 1][j] > maxSum[i + 1][j + 1])
-        return maxSum[i + 1][j] + D[i][j];
+    {
+        maxSum[i][j] = maxSum[i + 1][j] + D[i][j];
+        return maxSum[i][j];
+    }
     else
-        return maxSum[i + 1][j + 1] + D[i][j];
+    {
+        maxSum[i][j] = maxSum[i + 1][j + 1] + D[i][j];
+        return maxSum[i][j];
+    }
 }
 
 int main()
@@ -72,10 +82,11 @@ int main()
 
     memset(maxSum, -1, sizeof(maxSum)); // 将 maxSum 全部置成-1, -1代表：“从结点D[i][j]开始，到底边的最大和”尚未算过
 
-    printf("%d", getMaxSum(N, 1, 1));
+    // way1: AC
+    printf("%d", getMaxSum(1, 1, N));
+    // way2: AC
+    // getMaxSum(1, 1, N);
+    // printf("%d", maxSum[1][1]);
+
     return 0;
 }
-
-// 子问题：从结点D[i][j]开始，到底边路径的最大和
-// 这个子问题和两个变量i和j相关，那么一个“状态”就是(i, j)的一组取值，即每个数字的位置就是一个“状态”
-// 该“状态”所对应的“值”：是从该位置开始，到底边的最佳路径上的数字之和
