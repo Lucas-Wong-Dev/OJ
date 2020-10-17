@@ -75,39 +75,39 @@ int main()
     cout << CalcCases(cases) << endl;
     return 0;
 }
+// ------------------------------------
+#include <iostream> // AC
+using namespace std;
+const int MAX_n = 30;
+const int MAX_m = 30;
 
-// #include <iostream> // AC
-// using namespace std;
-// const int MAX_n = 30;
-// const int MAX_m = 30;
+inline int prev(int i, int n)
+{
+    return i == 1 ? n : i - 1;
+}
+inline int next(int i, int n)
+{
+    return i == n ? 1 : i + 1;
+}
+int calCases(int n, int m, int cases[MAX_n + 1][MAX_m + 1])
+{
+    cases[1][0] = 1;
+    for (int j = 1; j <= m; j++)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            cases[i][j] = cases[prev(i, n)][j - 1] + cases[next(i, n)][j - 1];
+        }
+    }
 
-// inline int prev(int i, int n)
-// {
-//     return i == 1 ? n : i - 1;
-// }
-// inline int next(int i, int n)
-// {
-//     return i == n ? 1 : i + 1;
-// }
-// int calCases(int n, int m, int cases[MAX_n + 1][MAX_m + 1])
-// {
-//     cases[1][0] = 1;
-//     for (int j = 1; j <= m; j++)
-//     {
-//         for (int i = 1; i <= n; i++)
-//         {
-//             cases[i][j] = cases[prev(i, n)][j - 1] + cases[next(i, n)][j - 1];
-//         }
-//     }
+    return cases[1][m];
+}
+int main()
+{
+    int cases[MAX_n + 1][MAX_m + 1] = {0};
+    int n, m;
+    cin >> n >> m;
+    cout << calCases(n, m, cases) << endl;
 
-//     return cases[1][m];
-// }
-// int main()
-// {
-//     int cases[MAX_n + 1][MAX_m + 1] = {0};
-//     int n, m;
-//     cin >> n >> m;
-//     cout << calCases(n, m, cases) << endl;
-
-//     return 0;
-// }
+    return 0;
+}

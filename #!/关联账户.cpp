@@ -47,8 +47,9 @@ int main()
 */
 /*
 题目答案：
-m[i] == qID ? m[i] = pID : m[i];
+m[i] == qID ? m[i] = pID : m[i]
 */
+// 或 if (m[i] == pID) m[i] = qID
 
 #include <stdio.h>
 const int N = 100;
